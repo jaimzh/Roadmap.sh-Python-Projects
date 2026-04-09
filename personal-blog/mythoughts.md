@@ -21,11 +21,11 @@ Alright so for this project I built a personal blog that renders all its content
 
 Here's what I used:
 
-- **FastAPI** - the web framework (love how clean it is)
+- **FastAPI** - the web framework 
 - **Uvicorn** - the ASGI server that runs FastAPI
 - **Jinja2** - templating engine for rendering HTML
 - **Pydantic** - for data validation (comes with FastAPI)
-- **starlette** - for session management (also comes with FastAPI)
+- **starlette** - for session management (also comes with FastAPI)...that's actually kinda new to me 
 
 ```bash
 pip install fastapi uvicorn jinja2 pydantic
@@ -43,7 +43,7 @@ personal-blog/
 │   ├── dashboard.html
 │   ├── add_article.html
 │   └── edit_article.html
-├── static/             # CSS and other static files
+├── static/             # CSS and other static files,
 │   └── style.css
 ├── content/            # Where articles are stored as JSON
 │   └── articles.json
