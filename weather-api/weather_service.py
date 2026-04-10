@@ -1,10 +1,13 @@
 import requests
 import os
-from dotenv import load_dotenv
+
 from config import Config
-load_dotenv()
-    
-api_key=os.getenv("WEATHER_API_KEY")
+
+import redis
+import json
+
+#redis setup, decod response to strings instead of binary
+redis_conn = redis.Redis(host='localhost', port=6379, decode_responses=True)
 
 BASE_URL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
 

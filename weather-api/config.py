@@ -5,3 +5,4 @@ load_dotenv()
 
 class Config: 
     API_KEY= os.getenv("WEATHER_API_KEY")
+    REDIS_URL= os.getenv("REDIS_URL")
