@@ -44,3 +44,11 @@ HTTP Requests: Use a package or module to make HTTP requests. For example, if yo
 Rate Limiting: Implement rate limiting to prevent abuse of your API. You can use a package like express-rate-limit for Node.js or flask-limiter for Python.
 
 This project will help you understand how to work with 3rd party APIs, caching, and environment variables. It will also help you understand how to structure your API and how to handle requests.
+
+so immport Limiter from slowapi and get_remote_address from slowapi.util 
+
+create the limiter by initializing it 
+limiter = Limiter(key_func=remote_address)
+app.state.limiter=limiter
+
+then you can hook up rate limit exceeded handler if you want, it is more or less just for giving custom errors and stuff if rate limit is exceeded
