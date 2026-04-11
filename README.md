@@ -2,6 +2,17 @@
 
 A collection of Python and full-stack projects for learning and practice, all from [roadmap.sh](https://roadmap.sh).
 
+> Note to self: deploy all these projects when you're done 
+
+## Table of Contents
+
+- [Expense Tracker](./expense-tracker)
+- [Task Tracker CLI](./task-tracker-cli)
+- [Unit Converter](./unit-converter)
+- [GitHub Activity](./github-activity)
+- [Personal Blog](./personal-blog)
+- [Weather API](./weather-api)
+
 ## Projects
 
 ### [Expense Tracker](https://roadmap.sh/projects/expense-tracker)
@@ -40,6 +51,14 @@ A full-stack personal blogging platform with a minimalist UI.
 - **Backend**: FastAPI (Python)
 - **Frontend**: HTML5, CSS3, Jinja2
 
+### [Weather API](https://roadmap.sh/projects/weather-api-wrapper-service)
+
+A FastAPI-based Weather API that fetches weather data from the Visual Crossing Weather API.
+
+- Implements caching with Redis to reduce external API calls
+- Includes rate limiting and comprehensive logging
+- **Backend**: FastAPI (Python)
+
 
 ## Getting Started
 
@@ -71,6 +90,13 @@ python main.py
 
 ```bash
 cd personal-blog
+uvicorn main:app --reload
+```
+
+**Weather API:**
+
+```bash
+cd weather-api
 uvicorn main:app --reload
 ```
 
