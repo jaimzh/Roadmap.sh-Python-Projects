@@ -60,3 +60,5 @@ for better documentation we add details and responsed to endpoints as arguments
 
 now main.py was starting to look a little cluttered  we have to make a models.py...yay my fav part 
 
+now time to add logging
+
