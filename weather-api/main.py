@@ -5,7 +5,8 @@ from slowapi.errors import RateLimitExceeded
 from fastapi.responses import JSONResponse
 from weather_service import fetch_weather
 from fastapi import HTTPException
-
+from models import WeatherResponseModel
+from constants import WEATHER_API_RESPONSES
 
 limiter = Limiter(key_func=get_remote_address)
 app = FastAPI(
@@ -36,39 +37,11 @@ async def root():
 
 @app.get(
     "/weather/{city}",
+    response_model= WeatherResponseModel,
     summary="Get Weather for a City",
     description="Fetches weather data. Checks cache first, then API.",
-    responses={
-        200: {
-            "description": "Successful Response",
-            "content": {
-                "application/json": {
-                    "example": {
-                        "city": "New York",
-                        "data": {"temp": 25, "conditions": "Clear"},
-                    }
-                }
-            },
-        },
-        404: {
-            "description": "City Not Found",
-            "content": {
-                "application/json": {
-                    "example": {"detail": "Weather not found for this city"}
-                }
-            },
-        },
-        429: {
-            "description": "Rate Limit Exceeded",
-            "content": {
-                "application/json": {
-                    "example": {
-                        "error": "Ohhhh Rate Limit Exceeded, wait a bit before you try"
-                    }
-                }
-            },
-        },
-    },
+    responses=WEATHER_API_RESPONSES 
+        
 )
 @limiter.limit("5/minute")
 async def get_weather(

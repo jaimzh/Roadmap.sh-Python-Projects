@@ -54,3 +54,9 @@ initialize and that's more or less it, tbh the docs offer a simple copy and past
 now we do better error handling using http exceptions
 
 ```from fastapi import HTTPException```
+and well hook it up in try except blocks
+
+for better documentation we add details and responsed to endpoints as arguments
+
+now main.py was starting to look a little cluttered  we have to make a models.py...yay my fav part 
+
