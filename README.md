@@ -15,45 +15,45 @@ A collection of Python and full-stack projects for learning and practice, all fr
 
 ## Projects
 
-### [Expense Tracker](https://roadmap.sh/projects/expense-tracker)
+### [Expense Tracker](./expense-tracker)
 
-A command-line expense management tool with budget tracking features.
+A command-line expense management tool with budget tracking features. *(Original challenge: [roadmap.sh](https://roadmap.sh/projects/expense-tracker))*
 
 - Track income and expenses
 - Manage budgets
 - Export to CSV
 
-### [Task Tracker CLI](https://roadmap.sh/projects/task-tracker)
+### [Task Tracker CLI](./task-tracker-cli)
 
-A CLI tool for managing tasks and to-do lists.
+A CLI tool for managing tasks and to-do lists. *(Original challenge: [roadmap.sh](https://roadmap.sh/projects/task-tracker))*
 
 - Add, edit, and delete tasks
 - Mark tasks as complete
 - Store tasks in JSON format
 
-### [Unit Converter](https://roadmap.sh/projects/unit-converter)
+### [Unit Converter](./unit-converter)
 
-A full-stack unit converter application.
+A full-stack unit converter application. *(Original challenge: [roadmap.sh](https://roadmap.sh/projects/unit-converter))*
 
 - **Backend**: FastAPI (Python)
 - **Frontend**: React + Vite + TypeScript
 - Convert between different units of measurement
 
-### [GitHub Activity](https://roadmap.sh/projects/github-user-activity)
+### [GitHub Activity](./github-activity)
 
-A simple GitHub activity tracker.
+A simple GitHub activity tracker. *(Original challenge: [roadmap.sh](https://roadmap.sh/projects/github-user-activity))*
 
-### [Personal Blog](https://roadmap.sh/projects/personal-blog)
+### [Personal Blog](./personal-blog)
 
-A full-stack personal blogging platform with a minimalist UI.
+A full-stack personal blogging platform with a minimalist UI. *(Original challenge: [roadmap.sh](https://roadmap.sh/projects/personal-blog))*
 
 - Admin dashboard and session-based authentication
 - **Backend**: FastAPI (Python)
 - **Frontend**: HTML5, CSS3, Jinja2
 
-### [Weather API](https://roadmap.sh/projects/weather-api-wrapper-service)
+### [Weather API](./weather-api)
 
-A FastAPI-based Weather API that fetches weather data from the Visual Crossing Weather API.
+A FastAPI-based Weather API that fetches weather data from the Visual Crossing Weather API. *(Original challenge: [roadmap.sh](https://roadmap.sh/projects/weather-api-wrapper-service))*
 
 - Implements caching with Redis to reduce external API calls
 - Includes rate limiting and comprehensive logging
