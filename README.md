@@ -2,63 +2,53 @@
 
 A collection of Python and full-stack projects for learning and practice, all from [roadmap.sh](https://roadmap.sh).
 
-> Note to self: deploy all these projects when you're done 
-
-## Table of Contents
-
-- [Expense Tracker](./expense-tracker)
-- [Task Tracker CLI](./task-tracker-cli)
-- [Unit Converter](./unit-converter)
-- [GitHub Activity](./github-activity)
-- [Personal Blog](./personal-blog)
-- [Weather API](./weather-api)
+> Note to self: deploVy all these projects when you're done
 
 ## Projects
 
-### [Expense Tracker](./expense-tracker)
+### [Expense Tracker](https://roadmap.sh/projects/expense-tracker)
 
-A command-line expense management tool with budget tracking features. *(Original challenge: [roadmap.sh](https://roadmap.sh/projects/expense-tracker))*
+A command-line expense management tool with budget tracking features.
 
 - Track income and expenses
 - Manage budgets
 - Export to CSV
 
-### [Task Tracker CLI](./task-tracker-cli)
+### [Task Tracker CLI](https://roadmap.sh/projects/task-tracker)
 
-A CLI tool for managing tasks and to-do lists. *(Original challenge: [roadmap.sh](https://roadmap.sh/projects/task-tracker))*
+A CLI tool for managing tasks and to-do lists.
 
 - Add, edit, and delete tasks
 - Mark tasks as complete
 - Store tasks in JSON format
 
-### [Unit Converter](./unit-converter)
+### [Unit Converter](https://roadmap.sh/projects/unit-converter)
 
-A full-stack unit converter application. *(Original challenge: [roadmap.sh](https://roadmap.sh/projects/unit-converter))*
+A full-stack unit converter application.
 
 - **Backend**: FastAPI (Python)
 - **Frontend**: React + Vite + TypeScript
 - Convert between different units of measurement
 
-### [GitHub Activity](./github-activity)
+### [GitHub Activity](https://roadmap.sh/projects/github-user-activity)
 
-A simple GitHub activity tracker. *(Original challenge: [roadmap.sh](https://roadmap.sh/projects/github-user-activity))*
+A simple GitHub activity tracker.
 
-### [Personal Blog](./personal-blog)
+### [Personal Blog](https://roadmap.sh/projects/personal-blog)
 
-A full-stack personal blogging platform with a minimalist UI. *(Original challenge: [roadmap.sh](https://roadmap.sh/projects/personal-blog))*
+A full-stack personal blogging platform with a minimalist UI.
 
 - Admin dashboard and session-based authentication
 - **Backend**: FastAPI (Python)
 - **Frontend**: HTML5, CSS3, Jinja2
 
-### [Weather API](./weather-api)
+### [Weather API](https://roadmap.sh/projects/weather-api-wrapper-service)
 
-A FastAPI-based Weather API that fetches weather data from the Visual Crossing Weather API. *(Original challenge: [roadmap.sh](https://roadmap.sh/projects/weather-api-wrapper-service))*
+A FastAPI-based Weather API that fetches weather data from the Visual Crossing Weather API.
 
 - Implements caching with Redis to reduce external API calls
 - Includes rate limiting and comprehensive logging
 - **Backend**: FastAPI (Python)
-
 
 ## Getting Started
 
