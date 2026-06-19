@@ -50,6 +50,17 @@ A FastAPI-based Weather API that fetches weather data from the Visual Crossing W
 - Includes rate limiting and comprehensive logging
 - **Backend**: FastAPI (Python)
 
+
+### [Blogging Platform API](https://roadmap.sh/projects/blogging-platform-api)
+
+A clean, production-ready RESTful API for managing personal blog posts with fully integrated persistent storage.
+
+- **Backend**: FastAPI (Python)
+- **Database**: SQLite3
+- Complete CRUD execution with strict Pydantic payload validation
+- Global fuzzy database text-searching across titles, contents, categories, and tags
+- Self-documenting OpenAPI architecture with customized headers
+
 ## Getting Started
 
 Each project has its own README with specific setup instructions. Generally:
@@ -90,6 +101,9 @@ cd weather-api
 uvicorn main:app --reload
 ```
 
+**Blogging Platform API:**
+cd blogging-platform-api
+uvicorn main:app --reload
 ## License
 
 MIT
