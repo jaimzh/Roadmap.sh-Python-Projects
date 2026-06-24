@@ -1,0 +1,35 @@
+from pydantic import BaseModel, EmailStr
+from typing import Optional
+
+# TODO SCHEMA 
+class TodoRequest(BaseModel):
+    title: str
+    description: Optional[str] = None
+    
+class TodoResponse(BaseModel):
+    id: int
+    title: str
+    description: Optional[str] = None
+    is_completed: bool
+    user_id: int
+
+    class Config: 
+        from_attributes = True #this allows pydantic to read raw sqlalchemy object directly
+        #because we are getting a response, we are converting raw sql to a claen json, it is just used for translation
+        
+ 
+# AUTH SCHEMAS
+#front
+class UserRegister(BaseModel): 
+    name: str
+    email: EmailStr
+    password: str
+    
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+    
+#after successful login we attatch token 
+class Token(BaseModel): 
+    access_token: str  #the expiration date is baked into the access token btw 
+    token_type: str #
