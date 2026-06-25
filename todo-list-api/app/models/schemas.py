@@ -32,4 +32,13 @@ class UserLogin(BaseModel):
 #after successful login we attatch token 
 class Token(BaseModel): 
     access_token: str  #the expiration date is baked into the access token btw 
-    token_type: str #
+    token_type: str ="bearer" # Default token type for OAuth2/JWT #
+    
+class UserResponse(BaseModel):
+    id: int
+    name: str
+    email: EmailStr
+    is_active: bool 
+
+    class Config:
+        from_attributes = True

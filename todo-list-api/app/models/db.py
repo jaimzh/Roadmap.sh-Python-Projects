@@ -11,6 +11,8 @@ class User(Base):
     email = Column(String, unique=True, nullable=False)
     hashed_password = Column(String, nullable=False)
     
+    is_active = Column(Boolean, default=True)  # Defaults to True on creation
+    
     #think of this like a poiniter arrow to link to the other table, it points to a list of tasks
     todos = relationship("Todo", back_populates="owner", cascade="all, delete-orphan")
     #back populates means if you  edit todo.owner it will also edit  Users here, the cascade is a way to make sure that if a user is deleted all their tasks are delelted 
