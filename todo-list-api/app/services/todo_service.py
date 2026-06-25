@@ -19,10 +19,40 @@ def create_todo(db: Session, todo_data: TodoRequest, user_id: int):
 
 
 
-def get_all_todos(db:Session, user_id: int): 
-    # SELECT * FROM todos WHERE todos.user_id = 1; the reason it is one is just for now i mean a fixed placeholder 
-    return db.query(Todo).filter(Todo.user_id == user_id).all()
+# def get_all_todos(db:Session, user_id: int): 
+#     # SELECT * FROM todos WHERE todos.user_id = 1; the reason it is one is just for now i mean a fixed placeholder 
+#     return db.query(Todo).filter(Todo.user_id == user_id).all()
 
+
+
+
+
+#pagination logic 
+
+def get_all_todos(db: Session, user_id: int, page: int, limit: int):
+    # 1. Get total count of items belonging to this user
+    total_items = db.query(Todo).filter(Todo.user_id == user_id).count()
+    
+    # 2. Calculate offset math
+    skip = (page - 1) * limit
+    
+    # 3. Fetch the specific slice of rows
+    todos = db.query(Todo)\
+              .filter(Todo.user_id == user_id)\
+              .offset(skip)\
+              .limit(limit)\
+              .all()
+              
+    return {
+        "data": todos,
+        "page": page,
+        "limit": limit,
+        "total": total_items
+    }
+    
+    
+    
+    
 def get_todo_by_id(db:Session, todo_id: int,  user_id: int): 
     
     return db.query(Todo).filter(Todo.id == todo_id, Todo.user_id == user_id).first()

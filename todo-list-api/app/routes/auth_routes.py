@@ -20,6 +20,9 @@ def register_user(registration_data: schemas.UserRegister, db: Session = Depends
     new_user = user_service.create_user(db=db, user_data=registration_data )
     return new_user
 
+
+        
+        
 @router.post("/login")
 def login(
     # Use Depends(OAuth2PasswordRequestForm) instead of your Pydantic schema

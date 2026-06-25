@@ -42,3 +42,13 @@ class UserResponse(BaseModel):
 
     class Config:
         from_attributes = True
+        
+        
+class PaginatedTodoResponse(BaseModel):
+      data: list[TodoResponse]
+      page: int
+      limit: int
+      total: int
+    
+      class Config:
+          from_attributes = True    

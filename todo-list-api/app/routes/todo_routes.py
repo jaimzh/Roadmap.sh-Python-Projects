@@ -1,11 +1,12 @@
-from fastapi import APIRouter, HTTPException, status, Depends
+from fastapi import APIRouter, HTTPException, Query, status, Depends
 from sqlalchemy.orm import Session
 from typing import List
 
 from app.database import get_db
-from app.models.schemas import TodoRequest, TodoResponse
+from app.models.schemas import PaginatedTodoResponse, TodoRequest, TodoResponse
 from app.services import todo_service
-from app.models import schemas, db
+from app.models import  db
+from app.models.db import Todo
 from app.utils.security import get_current_user
 
 router = APIRouter(prefix="/todos", tags=["Todos Operations"])
@@ -22,13 +23,18 @@ def create_todo(
 
 
  
-@router.get("/", response_model=List[TodoResponse], status_code=status.HTTP_200_OK)
+@router.get("/", response_model=PaginatedTodoResponse, status_code=status.HTTP_200_OK)
 def read_all_todos(
     db: Session = Depends(get_db),
+    page: int = Query(default=1, ge=1),
+    limit: int = Query(default=10, ge=1, le=100),
     current_user: db.User = Depends(get_current_user) # Inject here
-) -> List[TodoResponse]:
+):
     # Swap STATIC_USER_ID for current_user.id
-    return todo_service.get_all_todos(db=db, user_id=current_user.id)
+    return todo_service.get_all_todos(db=db, 
+        user_id=current_user.id, 
+        page=page, 
+        limit=limit)
 
 
 #
@@ -81,3 +87,6 @@ def delete_todo(
     if not success:
         raise HTTPException(status_code=404, detail="Task not found")
     return None
+
+
+
