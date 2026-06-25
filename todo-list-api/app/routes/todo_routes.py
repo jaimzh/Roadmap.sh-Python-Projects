@@ -1,50 +1,48 @@
 from fastapi import APIRouter, HTTPException, Query, status, Depends
 from sqlalchemy.orm import Session
-from typing import List
 
 from app.database import get_db
 from app.models.schemas import PaginatedTodoResponse, TodoRequest, TodoResponse
 from app.services import todo_service
-from app.models import  db
-from app.models.db import Todo
+from app.models import db
 from app.utils.security import get_current_user
 
 router = APIRouter(prefix="/todos", tags=["Todos Operations"])
 
 
-
+# create uses current_user.id so the owner is automatic from the token
 @router.post("/", response_model=TodoResponse, status_code=status.HTTP_201_CREATED)
 def create_todo(
-    todo_data: TodoRequest, 
-    db: Session = Depends(get_db), 
+    todo_data: TodoRequest,
+    db: Session = Depends(get_db),
     current_user: db.User = Depends(get_current_user)
 ):
     return todo_service.create_todo(db=db, todo_data=todo_data, user_id=current_user.id)
 
 
- 
+# list only returns todos for the logged-in user, with pagination
 @router.get("/", response_model=PaginatedTodoResponse, status_code=status.HTTP_200_OK)
 def read_all_todos(
     db: Session = Depends(get_db),
     page: int = Query(default=1, ge=1),
     limit: int = Query(default=10, ge=1, le=100),
-    current_user: db.User = Depends(get_current_user) # Inject here
+    current_user: db.User = Depends(get_current_user)
 ):
-    # Swap STATIC_USER_ID for current_user.id
-    return todo_service.get_all_todos(db=db, 
-        user_id=current_user.id, 
-        page=page, 
-        limit=limit)
+    return todo_service.get_all_todos(
+        db=db,
+        user_id=current_user.id,
+        page=page,
+        limit=limit,
+    )
 
 
-#
+# read is scoped to current_user so users cannot see each other's todos
 @router.get("/{todo_id}", response_model=TodoResponse, status_code=status.HTTP_200_OK)
 def read_todo(
-    todo_id: int, 
+    todo_id: int,
     db: Session = Depends(get_db),
-    current_user: db.User = Depends(get_current_user) # Inject here
+    current_user: db.User = Depends(get_current_user)
 ):
-    # Swap STATIC_USER_ID for current_user.id
     db_todo = todo_service.get_todo_by_id(
         db=db, todo_id=todo_id, user_id=current_user.id
     )
@@ -53,14 +51,14 @@ def read_todo(
     return db_todo
 
 
-
+# first check if the todo exists, then check ownership so wrong user gets 403
 @router.put("/{todo_id}", response_model=TodoResponse)
 def update_todo(
     todo_id: int,
     todo_data: TodoRequest,
     is_completed: bool = False,
     db: Session = Depends(get_db),
-    current_user: db.User = Depends(get_current_user) # Inject here
+    current_user: db.User = Depends(get_current_user)
 ):
     existing_todo = todo_service.get_todo_by_id_any_user(db=db, todo_id=todo_id)
     if not existing_todo:
@@ -68,7 +66,6 @@ def update_todo(
     if existing_todo.user_id != current_user.id:
         raise HTTPException(status_code=403, detail="Forbidden")
 
-    # Swap STATIC_USER_ID for current_user.id
     updated_todo = todo_service.update_todo(
         db=db,
         todo_id=todo_id,
@@ -81,12 +78,12 @@ def update_todo(
     return updated_todo
 
 
-
+# same ownership check as update: missing todo is 404, someone else's todo is 403
 @router.delete("/{todo_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_todo(
-    todo_id: int, 
+    todo_id: int,
     db: Session = Depends(get_db),
-    current_user: db.User = Depends(get_current_user) # Inject here
+    current_user: db.User = Depends(get_current_user)
 ):
     existing_todo = todo_service.get_todo_by_id_any_user(db=db, todo_id=todo_id)
     if not existing_todo:
@@ -94,11 +91,7 @@ def delete_todo(
     if existing_todo.user_id != current_user.id:
         raise HTTPException(status_code=403, detail="Forbidden")
 
-    # Swap STATIC_USER_ID for current_user.id
     success = todo_service.delete_todo(db=db, todo_id=todo_id, user_id=current_user.id)
     if not success:
         raise HTTPException(status_code=404, detail="Task not found")
     return None
-
-
-

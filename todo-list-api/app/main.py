@@ -11,8 +11,6 @@ app.include_router(todo_routes.router)
 app.include_router(auth_routes.router)
 
 
-
-
 @app.get("/")
 def health_check():
     return {
