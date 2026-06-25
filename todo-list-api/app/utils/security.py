@@ -52,10 +52,11 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -
     return encoded_jwt
 
 
-# NOTE: This is for dynamic id, so now we have to hook up authorization when creating todo
-# This tells FastAPI to look for a "Authorization: Bearer <TOKEN>" header
-# This tells FastAPI to look for a "Authorization: Bearer <TOKEN>" header
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
+
+
+
 def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)) -> User:
     """
     Security guard that intercepts requests, decodes the JWT token, 

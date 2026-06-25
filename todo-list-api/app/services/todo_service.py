@@ -57,6 +57,10 @@ def get_todo_by_id(db:Session, todo_id: int,  user_id: int):
     
     return db.query(Todo).filter(Todo.id == todo_id, Todo.user_id == user_id).first()
 
+
+def get_todo_by_id_any_user(db: Session, todo_id: int):
+    return db.query(Todo).filter(Todo.id == todo_id).first()
+
 def update_todo(db:Session, todo_id: int, todo_data: TodoRequest, is_completed: bool,   user_id: int):
     
     

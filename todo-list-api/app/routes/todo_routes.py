@@ -62,6 +62,12 @@ def update_todo(
     db: Session = Depends(get_db),
     current_user: db.User = Depends(get_current_user) # Inject here
 ):
+    existing_todo = todo_service.get_todo_by_id_any_user(db=db, todo_id=todo_id)
+    if not existing_todo:
+        raise HTTPException(status_code=404, detail="Task not found")
+    if existing_todo.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Forbidden")
+
     # Swap STATIC_USER_ID for current_user.id
     updated_todo = todo_service.update_todo(
         db=db,
@@ -82,6 +88,12 @@ def delete_todo(
     db: Session = Depends(get_db),
     current_user: db.User = Depends(get_current_user) # Inject here
 ):
+    existing_todo = todo_service.get_todo_by_id_any_user(db=db, todo_id=todo_id)
+    if not existing_todo:
+        raise HTTPException(status_code=404, detail="Task not found")
+    if existing_todo.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Forbidden")
+
     # Swap STATIC_USER_ID for current_user.id
     success = todo_service.delete_todo(db=db, todo_id=todo_id, user_id=current_user.id)
     if not success:
